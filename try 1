@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genexis - 科技与民生共创</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* --- GENEXIS 品牌色系定义 --- */
+        :root {
+            /* 从图片提取的深青色背景 */
+            --bg-color: #105862; 
+            /* 图片中的亮青色高亮文字 */
+            --accent-cyan: #2DE1FC; 
+            /* 图片中下划线的杏桃色 */
+            --accent-peach: #FFCF96;
+            /* 文本颜色 */
+            --text-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            
+            /* 卡片样式：深色磨砂玻璃 */
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(45, 225, 252, 0.3);
+            --shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+            scrollbar-width: none; 
+        }
+        body::-webkit-scrollbar { display: none; }
+
+        .pinned-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px; /* 增强透视感，更有科技感 */
+            overflow: hidden;
+            background: radial-gradient(circle at center, #166d7a 0%, #105862 100%); /* 微妙的光影 */
+        }
+
+        /* Slogan 区域 */
+        .slogan-wrapper {
+            position: absolute;
+            text-align: center;
+            z-index: 10;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .slogan-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .slogan-underline {
+            width: 100px;
+            height: 6px;
+            background-color: var(--accent-peach);
+            margin: 0 auto 30px auto;
+            border-radius: 3px;
+        }
+
+        .slogan-desc {
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        
+        .highlight {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* 卡片容器 */
+        .cards-wrapper {
+            position: relative;
+            width: 360px;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* 科技感卡片 */
+        .card {
+            position: absolute;
+            width: 320px;
+            height: 180px;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow), inset 0 0 20px rgba(45, 225, 252, 0.05);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            transform-style: preserve-3d;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #105862;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .card-content {
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 模拟数据流动的动画条 */
+        .card-content::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; height: 100%; width: 40%;
+            background: var(--accent-cyan);
+            opacity: 0.7;
+        }
+
+        /* 按钮 - 这里的逻辑改为“突破/落地” */
+        .btn-breakthrough {
+            position: absolute;
+            bottom: 12%;
+            padding: 18px 40px;
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+            z-index: 20;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(45, 225, 252, 0.2);
+            transition: all 0.3s;
+        }
+        
+        /* 最终 Logo */
+        .final-brand {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8);
+            z-index: 1;
+        }
+
+        .brand-logo-text {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(45, 225, 252, 0.4);
+        }
+        
+        .brand-motto {
+            font-size: 1.5rem;
+            color: var(--accent-peach);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .scroll-spacer { height: 5000px; width: 100%; }
+
+        /* 粒子背景装饰 (可选) */
+        .bg-particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="pinned-container">
+        
+        <div id="particles"></div>
+
+        <div class="slogan-wrapper">
+            <h1 class="slogan-title">企业愿景</h1>
+            <div class="slogan-underline"></div>
+            <p class="slogan-desc">
+                Genexis 致力于构建一个以<br>
+                <span class="highlight">生物信息学</span> 与 <span class="highlight">人工智能</span> 为基础的<br>
+                科技型生物公司
+            </p>
+        </div>
+
+        <div class="cards-wrapper">
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-icon">Bio</div>
+                    <div class="card-title">Bioinformatics</div>
+                </div>
+                <div class="card-content" style="width: 80%"></div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:10px;">High-throughput sequencing analysis</div>
+            </div>
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-icon" style="background: var(--accent-peach); color: #105862;">AI</div>
+                    <div class="card-title">AI & Deep Learning</div>
+                </div>
+                <div class="card-content" style="width: 60%"></div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:10px;">Pattern recognition in genomic data</div>
+            </div>
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-icon">Med</div>
+                    <div class="card-title">Precision Medicine</div>
+                </div>
+                <div class="card-content" style="width: 90%"></div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:10px;">Personalized treatment strategies</div>
+            </div>
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-icon">RNA</div>
+                    <div class="card-title">Transcriptome</div>
+                </div>
+                <div class="card-content" style="width: 75%"></div>
+                <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:10px;">Peripheral blood monitoring tech</div>
+            </div>
+        </div>
+
+        <button class="btn-breakthrough">Initialize Breakthrough</button>
+
+        <div class="final-brand">
+            <div class="brand-logo-text">GENEXIS</div>
+            <div class="brand-motto">Science for Life</div>
+        </div>
+
+    </div>
+
+    <div class="scroll-spacer"></div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const wrapper = document.querySelector('.slogan-wrapper');
+        const cards = gsap.utils.toArray('.card');
+        const btn = document.querySelector('.btn-breakthrough');
+        const brand = document.querySelector('.final-brand');
+
+        // 初始化卡片位置：分散在四周
+        gsap.set(cards, {
+            x: (i) => (i % 2 === 0 ? -window.innerWidth : window.innerWidth),
+            y: (i) => Math.random() * 600 - 300,
+            rotationX: (i) => Math.random() * 60 - 30, // 增加3D旋转感
+            rotationY: (i) => Math.random() * 40 - 20,
+            scale: 0.6,
+            opacity: 0,
+            z: -500
+        });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".scroll-spacer",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.2, // 增加阻尼感，使其更有“液体”般的流动感
+            }
+        });
+
+        // 1. 愿景 Slogan 推进并虚化消失
+        tl.to(wrapper, {
+            scale: 1.5,
+            opacity: 0,
+            z: 200, // 向摄像机移动
+            filter: "blur(20px)",
+            duration: 3,
+            ease: "power2.in"
+        });
+
+        // 2. 技术汇聚 (Converge)
+        // 卡片从四周飞入，带着科技感的旋转
+        tl.to(cards, {
+            x: (i) => (i % 2 === 0 ? -20 : 20), // 稍微错开
+            y: (i) => i * 10 - 20,
+            z: 0,
+            rotationX: 0,
+            rotationY: 0,
+            rotation: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 6,
+            stagger: 0.15,
+            ease: "expo.out" 
+        }, "-=2");
+
+        // 3. 融合堆叠 (Stacking / Fusion)
+        // 模拟所有技术融合在一起
+        tl.to(cards, {
+            x: 0,
+            y: 0,
+            z: (i) => i * -20, // 紧密堆叠
+            scale: (i) => 1 - (i * 0.02),
+            boxShadow: "0 0 50px rgba(45, 225, 252, 0.3)", // 堆叠时发光增强
+            border: "1px solid rgba(45, 225, 252, 0.8)",
+            backgroundColor: "rgba(16, 88, 98, 0.9)", // 变深色背景以便叠加
+            duration: 4,
+            ease: "power3.inOut"
+        });
+
+        // 4. 按钮浮现
+        tl.to(btn, {
+            opacity: 1,
+            scale: 1,
+            y: -60,
+            duration: 2,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        // 悬停时间
+        tl.to({}, { duration: 2 });
+
+        // 5. 爆发扩散 (Breakthrough / Explosion)
+        // 象征技术落地，惠及四周
+        tl.to(cards, {
+            x: (i) => (Math.random() - 0.5) * window.innerWidth * 1.8,
+            y: (i) => (Math.random() - 0.5) * window.innerHeight * 1.8,
+            z: 500, // 向着用户飞来
+            rotationX: (i) => Math.random() * 360,
+            rotationY: (i) => Math.random() * 360,
+            opacity: 0,
+            scale: 1.5, // 变大后消失
+            duration: 4,
+            ease: "expo.out"
+        }, "burst");
+
+        // 按钮同时触发
+        tl.to(btn, {
+            scale: 3, // 按钮变大成光环
+            opacity: 0,
+            borderWidth: "0px",
+            duration: 1,
+            ease: "power2.out"
+        }, "burst");
+
+        // 6. 品牌呈现
+        tl.to(brand, {
+            opacity: 1,
+            scale: 1,
+            duration: 4,
+            ease: "power4.out"
+        }, "-=2");
+
+        tl.to({}, { duration: 3 }); // 结尾留白
+
+        // 简单的背景粒子生成
+        const pContainer = document.getElementById('particles');
+        for(let i=0; i<30; i++) {
+            let d = document.createElement('div');
+            d.className = 'bg-particle';
+            d.style.left = Math.random() * 100 + '%';
+            d.style.top = Math.random() * 100 + '%';
+            d.style.animation = `float ${Math.random()*5+5}s infinite ease-in-out`;
+            pContainer.appendChild(d);
+        }
+
+    </script>
+</body>
+</html>
