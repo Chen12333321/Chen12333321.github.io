@@ -1,74 +1,450 @@
-<footer class="bg-teal-700 text-white py-12">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genexis - 下一代精准医疗平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: { 50: '#E9F2F3', 100: '#C7DADC', 200: '#A4C3C5', 300: '#81ADAE', 400: '#5E9696', 500: '#3C8082', 600: '#34747A', 700: '#2F6B73', 800: '#204B50', 900: '#122F33' },
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+            .transition-custom { transition: all 0.3s ease; }
+            .fade-in-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+            .fade-in-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-white">Genexis</h3>
-                    <p class="text-teal-100 mb-6">
-                        以技术赋能产业，用创新连接未来，为全球客户提供前沿的科技解决方案。
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="flex items-center space-x-3">
+                    <img src="logo.jpg" alt="Genexis Logo" class="h-10 w-10 object-contain">
+                    <span class="text-teal-700 text-2xl font-bold">Genexis</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-teal-700 font-medium">首页</a>
+                    <a href="#about" class="text-gray-700 hover:text-teal-700 font-medium">关于我们</a>
+                    <a href="#platform" class="text-gray-700 hover:text-teal-700 font-medium">核心科技</a>
+                    <a href="#team" class="text-gray-700 hover:text-teal-700 font-medium">团队</a>
+                    <a href="#services" class="text-gray-700 hover:text-teal-700 font-medium">业务</a>
+                    <a href="#roadmap" class="text-gray-700 hover:text-teal-700 font-medium">规划</a>
+                    <a href="#contact" class="text-gray-700 hover:text-teal-700 font-medium">联系</a>
+                </div>
+                
+                <a href="#contact" class="hidden md:inline-block bg-teal-700 hover:bg-teal-800 text-white font-medium py-2 px-5 rounded-lg transition-custom">
+                    合作咨询
+                </a>
+                <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none"><i class="fa fa-bars text-2xl"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#home" class="block text-gray-700 py-2">首页</a>
+                <a href="#about" class="block text-gray-700 py-2">关于我们</a>
+                <a href="#platform" class="block text-gray-700 py-2">核心科技</a>
+                <a href="#contact" class="block bg-teal-700 text-white py-2 px-4 rounded-lg text-center">合作咨询</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-24 md:pt-0 min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="banner.jpg" alt="基因背景图" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gray-900/50"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-0 relative z-10">
+            <div class="max-w-4xl">
+                <h1 class="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-tight text-white mb-6 text-shadow">
+                    破解基因密语<br>
+                    <span class="text-teal-400">打造下一代精准医疗平台</span>
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.35rem)] text-gray-100 mb-8 max-w-2xl text-shadow leading-relaxed">
+                    专注于外周血转录组测序技术，构建以生物信息学与人工智能为基础的健康桥梁，让科研前沿服务于大众民生。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#platform" class="bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 px-8 rounded-lg text-center transition-custom">核心技术</a>
+                    <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-teal-700 font-medium py-3 px-8 rounded-lg text-center transition-custom">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">关于 Genexis</h2>
+                <div class="w-20 h-1 bg-teal-700 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-on-scroll">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">我们的使命</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        Genexis 致力于构建一个以<strong>生物信息学与人工智能</strong>为基础的科技型生物公司。我们专注于<strong>外周血转录组测序技术</strong>在个体化精准医疗的发展与落地。
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-teal-200 hover:text-white transition-custom">
-                            <i class="fa fa-weixin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-teal-200 hover:text-white transition-custom">
-                            <i class="fa fa-weibo text-xl"></i>
-                        </a>
-                        <a href="#" class="text-teal-200 hover:text-white transition-custom">
-                            <i class="fa fa-linkedin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-teal-200 hover:text-white transition-custom">
-                            <i class="fa fa-twitter text-xl"></i>
-                        </a>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        不管是癌症早筛还是慢性病管理，我们力图打造科技前沿与大众健康间的桥梁，解决当前转录组数据解读难、行业壁垒高的问题，实现从“一滴血”到“健康全景”的跨越。
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-teal-50 rounded-lg">
+                            <div class="text-teal-700 text-2xl font-bold mb-1">4+</div>
+                            <p class="text-gray-600 text-sm">核心算法</p>
+                        </div>
+                        <div class="p-4 bg-teal-50 rounded-lg">
+                            <div class="text-teal-700 text-2xl font-bold mb-1">94%</div>
+                            <p class="text-gray-600 text-sm">市场兴趣度</p>
+                        </div>
+                        <div class="p-4 bg-teal-50 rounded-lg">
+                            <div class="text-teal-700 text-2xl font-bold mb-1">Ox/PKU</div>
+                            <p class="text-gray-600 text-sm">顶级团队背景</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-white">快速链接</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-teal-100 hover:text-white transition-custom">首页</a></li>
-                        <li><a href="#about" class="text-teal-100 hover:text-white transition-custom">关于我们</a></li>
-                        <li><a href="#platform" class="text-teal-100 hover:text-white transition-custom">AI 平台</a></li>
-                        <li><a href="#team" class="text-teal-100 hover:text-white transition-custom">团队成员</a></li>
-                        <li><a href="#services" class="text-teal-100 hover:text-white transition-custom">业务范围</a></li>
-                        <li><a href="#roadmap" class="text-teal-100 hover:text-white transition-custom">发展路径</a></li>
-                        <li><a href="#news" class="text-teal-100 hover:text-white transition-custom">新闻动态</a></li>
-                        <li><a href="#contact" class="text-teal-100 hover:text-white transition-custom">联系我们</a></li>
-                    </ul>
+                <div class="relative fade-in-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1579684385180-1ea678bc44db?auto=format&fit=crop&w=800&q=80" alt="Laboratory" class="w-full h-auto rounded-lg shadow-xl" />
+                    <div class="absolute -bottom-6 -left-6 bg-teal-700 text-white p-6 rounded-lg shadow-lg max-w-xs">
+                        <h4 class="text-xl font-semibold mb-2">一滴血</h4>
+                        <p>读懂你的分子健康，追踪式预警癌症风险。</p>
+                    </div>
                 </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-white">业务领域</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">软件开发</a></li>
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">云计算服务</a></li>
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">网络安全</a></li>
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">数据分析</a></li>
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">物联网解决方案</a></li>
-                        <li><a href="#" class="text-teal-100 hover:text-white transition-custom">技术咨询与培训</a></li>
-                    </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="platform" class="py-20 bg-teal-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">四大核心科技群</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    从测序到解读，我们构建了完整的技术闭环，浇筑行业壁垒。
+                </p>
+                <div class="w-20 h-1 bg-teal-700 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-custom border-t-4 border-teal-600 fade-in-on-scroll">
+                    <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-flask text-teal-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GenTest</h3>
+                    <p class="text-teal-600 text-sm font-semibold mb-3">测序技术</p>
+                    <p class="text-gray-600 text-sm">
+                        自主设计标准化、产业级的多组学测序产品线。核心技术包括<strong>单细胞混样测序</strong>，可将单样成本降低至1/3，并建立了完整的样本处理SOP。
+                    </p>
                 </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-white">联系信息</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker text-teal-300 mt-1 mr-3"></i>
-                            <span class="text-teal-100">上海市浦东新区张江高科技园区博云路2号</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-phone text-teal-300 mr-3"></i>
-                            <span class="text-teal-100">+86 21 5888 7777</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-envelope text-teal-300 mr-3"></i>
-                            <span class="text-teal-100">info@genexis.com</span>
-                        </li>
-                    </ul>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-custom border-t-4 border-teal-600 fade-in-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-code-fork text-teal-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GenMark</h3>
+                    <p class="text-teal-600 text-sm font-semibold mb-3">前沿算法</p>
+                    <p class="text-gray-600 text-sm">
+                        包含 <strong>ReCIDE</strong> (细胞比例估算)、<strong>ProbScorer</strong> (通路打分) 等四项前沿算法。精准推断免疫细胞比例、实体瘤风险评估及单细胞精准注释。
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-custom border-t-4 border-teal-600 fade-in-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-brain text-teal-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GenMind</h3>
+                    <p class="text-teal-600 text-sm font-semibold mb-3">医学大模型</p>
+                    <p class="text-gray-600 text-sm">
+                        基于生成式AI的医学科学大模型。桥接医生与复杂表达谱数据，提供从分子数据洞察到临床决策支持的一体化解决方案。
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-custom border-t-4 border-teal-600 fade-in-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-database text-teal-700 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">GenTalk</h3>
+                    <p class="text-teal-600 text-sm font-semibold mb-3">数据整合</p>
+                    <p class="text-gray-600 text-sm">
+                        整合海量GWAS研究与权威医学知识库。实现基因组与转录组的综合性临床语言转化，支持多组学联合分析。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">核心团队</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">凝聚牛津、北大、剑桥等顶级院校精英，打通精准医疗全链条</p>
+                <div class="w-20 h-1 bg-teal-700 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid gap-8 md:grid-cols-3 justify-center">
+                <div class="bg-teal-50 rounded-xl shadow-lg overflow-hidden text-center transition-custom hover:shadow-xl group fade-in-on-scroll">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://ui-avatars.com/api/?name=Guo+Xu&background=2F6B73&color=fff&size=256" alt="郭旭" class="w-full h-full object-cover" />
+                        <div class="absolute top-0 right-0 bg-teal-700 text-white text-xs px-2 py-1 m-2 rounded">Oxford</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">郭旭</h3>
+                        <p class="text-teal-700 font-medium mb-3">创始人 (Founder)</p>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            牛津大学生物博士生，拥有强大的跨学科背景。全面负责初创团队的战略制定、科学方向与组织搭建。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50 rounded-xl shadow-lg overflow-hidden text-center transition-custom hover:shadow-xl group fade-in-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://ui-avatars.com/api/?name=Wang+Tianyou&background=2F6B73&color=fff&size=256" alt="王天佑" class="w-full h-full object-cover" />
+                        <div class="absolute top-0 right-0 bg-teal-700 text-white text-xs px-2 py-1 m-2 rounded">Oxford/Penn</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">王天佑</h3>
+                        <p class="text-teal-700 font-medium mb-3">联合创始人</p>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            牛津大学机器人博士生，宾夕法尼亚大学机器智能硕士。参与团队的AI战略规划、人员组织和投融资战略规划。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50 rounded-xl shadow-lg overflow-hidden text-center transition-custom hover:shadow-xl group fade-in-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://ui-avatars.com/api/?name=Zhu+Xiangrui&background=2F6B73&color=fff&size=256" alt="朱祥瑞" class="w-full h-full object-cover" />
+                        <div class="absolute top-0 right-0 bg-teal-700 text-white text-xs px-2 py-1 m-2 rounded">PKU Medicine</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">朱祥瑞</h3>
+                        <p class="text-teal-700 font-medium mb-3">联合创始人</p>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            北京大学医学部直博。聚焦动脉疾病修复和单细胞技术。负责分子实验室建立，协调医学对接及资源整合。
+                        </p>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-teal-600 pt-8 text-center text-teal-200">
-                <p>&copy; 2023 Genexis. 保留所有权利。</p>
+            <div class="text-center mt-12 text-gray-500 text-sm fade-in-on-scroll">
+                <p>技术核心团队还包括来自复旦、西湖大学、中科院、剑桥大学的博士与研究员。</p>
             </div>
         </div>
+    </section>
+
+    <section id="services" class="py-20 bg-teal-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">六大健康洞察</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">外周血转录组 = 免疫、炎症、代谢的立体“分子扫描仪”</p>
+                <div class="w-20 h-1 bg-teal-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-heartbeat"></i></div>
+                    <h3 class="text-lg font-bold mb-2">免疫全景图</h3>
+                    <p class="text-gray-600 text-sm">20+免疫通路、免疫活性评估及细胞活动分析。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-search"></i></div>
+                    <h3 class="text-lg font-bold mb-2">肿瘤风险预警</h3>
+                    <p class="text-gray-600 text-sm">实体瘤风险评估、肿瘤免疫评分及极早期白血病筛查。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-line-chart"></i></div>
+                    <h3 class="text-lg font-bold mb-2">慢性病监控</h3>
+                    <p class="text-gray-600 text-sm">糖尿病分子特征、心血管健康监测及内皮损伤信号。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-shield"></i></div>
+                    <h3 class="text-lg font-bold mb-2">隐形感染识别</h3>
+                    <p class="text-gray-600 text-sm">炎症机制拆解，细菌/病毒/真菌等多项感染标志识别。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-battery-half"></i></div>
+                    <h3 class="text-lg font-bold mb-2">器官压力显影</h3>
+                    <p class="text-gray-600 text-sm">分子睡眠评分、压力反应评估、肝脏毒性及肾小球炎症。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-custom fade-in-on-scroll" style="transition-delay: 0.5s;">
+                    <div class="text-teal-600 text-xl mb-3"><i class="fa fa-user-md"></i></div>
+                    <h3 class="text-lg font-bold mb-2">AI 辅助诊断</h3>
+                    <p class="text-gray-600 text-sm">结合GenMind大模型，为医生和患者提供可解释的临床建议。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">战略目标</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">三年打造大数据精准医疗环岛</p>
+                <div class="w-20 h-1 bg-teal-700 mx-auto mt-4"></div>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-teal-200 hidden md:block"></div>
+
+                <div class="flex flex-col md:flex-row mb-12 relative fade-in-on-scroll">
+                    <div class="md:w-1/2 md:pr-12">
+                        <div class="md:text-right bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-custom">
+                            <h4 class="text-xl font-semibold text-teal-700 mb-2">短期：公司落地与技术验证</h4>
+                            <p class="text-gray-700 mb-2 font-medium">融资 & 原型机</p>
+                            <ul class="text-gray-600 text-sm list-disc list-inside text-left md:text-right space-y-1">
+                                <li>GenMind 1.0 上线与双Agents测试</li>
+                                <li>GenTest 混样测序技术验证</li>
+                                <li>完成天使轮融资与团队扩充</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-700 rounded-full flex items-center justify-center ring-8 ring-white shadow-lg hidden md:flex">
+                        <i class="fa fa-flag text-white"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row mb-12 relative fade-in-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="md:w-1/2 md:pr-12"></div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-700 rounded-full flex items-center justify-center ring-8 ring-white shadow-lg hidden md:flex">
+                        <i class="fa fa-hospital-o text-white"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <div class="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-custom">
+                            <h4 class="text-xl font-semibold text-teal-700 mb-2">中期：市场验证与合作</h4>
+                            <p class="text-gray-700 mb-2 font-medium">医院合作 & 数据积累</p>
+                            <ul class="text-gray-600 text-sm list-disc list-inside space-y-1">
+                                <li>合作1-3所三甲医院，建立100人试点队列</li>
+                                <li>自主建设生信与AI实验室</li>
+                                <li>GenMark 四项核心算法完成开发</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row relative fade-in-on-scroll" style="transition-delay: 0.4s;">
+                    <div class="md:w-1/2 md:pr-12">
+                        <div class="md:text-right bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-custom">
+                            <h4 class="text-xl font-semibold text-teal-700 mb-2">长期：产品自主研发与闭环</h4>
+                            <p class="text-gray-700 mb-2 font-medium">药物研发 & 全球化</p>
+                            <ul class="text-gray-600 text-sm list-disc list-inside text-left md:text-right space-y-1">
+                                <li>海量组学/临床数据驱动药物靶点开发</li>
+                                <li>打造“测序-分析-报告”完整产业链</li>
+                                <li>成为精准医疗领域的独角兽企业</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-700 rounded-full flex items-center justify-center ring-8 ring-white shadow-lg hidden md:flex">
+                        <i class="fa fa-globe text-white"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-gradient-to-br from-teal-700/5 to-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-on-scroll">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">联系我们</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">期待与医院、实验室及投资机构建立合作</p>
+                <div class="w-20 h-1 bg-teal-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in-on-scroll">
+                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">发送消息</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">姓名</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700 transition-custom" placeholder="请输入您的姓名">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">邮箱</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700 transition-custom" placeholder="请输入您的邮箱">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">消息内容</label>
+                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700 transition-custom" placeholder="请输入您的消息内容"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-6 rounded-lg transition-custom">发送消息</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="fade-in-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="bg-white p-8 rounded-xl shadow-md mb-8">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">联系方式</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0"><i class="fa fa-map-marker text-teal-700"></i></div>
+                                <div><h4 class="font-semibold text-gray-800 mb-1">地址</h4><p class="text-gray-600">Oxford, UK / 中国长三角地区 (筹)</p></div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0"><i class="fa fa-phone text-teal-700"></i></div>
+                                <div><h4 class="font-semibold text-gray-800 mb-1">电话</h4><p class="text-gray-600">+86 150 4014 7669</p></div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0"><i class="fa fa-envelope text-teal-700"></i></div>
+                                <div><h4 class="font-semibold text-gray-800 mb-1">邮箱</h4><p class="text-gray-600">20011009gx@gmail.com</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-teal-800 text-white py-8 text-center">
+        <p>&copy; 2025 Genexis Biotech. 保留所有权利。</p>
     </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-4', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-2', 'py-4');
+            }
+        });
+
+        // 移动端菜单
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 滚动浮现动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
